@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление сотрудниками</title>
+    <script>
+        async function addEmployee(event) {
+            event.preventDefault(); // Предотвращаем перезагрузку страницы
+
+            const name = document.getElementById('employeeName').value;
+            const response = await fetch('/employees', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: name })
+            });
+
+            const messageElement = document.getElementById('message');
+
+            if (response.ok) {
+                const data = await response.json();
+                messageElement.innerText = data.message; // Отображаем сообщение об успешном добавлении
+                messageElement.style.color = 'green'; // Успешное сообщение
+                document.getElementById('employeeName').value = ''; // Очищаем поле ввода
+                location.reload(); // Перезагружаем страницу, чтобы обновить список сотрудников
+            } else {
+                const errorData = await response.json();
+                messageElement.innerText = 'Ошибка: ' + errorData.message; // Отображаем сообщение об ошибке
+                messageElement.style.color = 'red'; // Сообщение об ошибке
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Добавить сотрудника</h1>
+    <form onsubmit="addEmployee(event)">
+        <input type="text" id="employeeName" placeholder="Имя сотрудника" required>
+        <button type="submit">Добавить</button>
+    </form>
+    <p id="message"></p> <!-- Место для отображения сообщения -->
+
+    <h2>Список сотрудников</h2>
+    <table border="1">
+       
