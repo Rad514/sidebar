@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Управление сотрудниками</title> 
+  <link rel="stylesheet" href="styles.css"> <!-- Подключение CSS -->
+ </head> 
+ <body> 
+  <h1>Управление сотрудниками</h1> 
+  <div class="container"> 
+   <div class="input-section"> 
+    <input type="text" id="employeeNameInput" placeholder="Введите ФИО сотрудника"> 
+    <button id="addEmployee">Добавить сотрудника</button> 
+    <button id="removeEmployee">Убрать сотрудника</button> 
+   </div> 
+   <h2>Карантин</h2> 
+   <div class="quarantine-section"> 
+    <input type="text" id="quarantineEmployeeInput" placeholder="Введите ФИО"> 
+    <button id="addQuarantineEmployee">Добавить</button> 
+   </div> 
+   <h2>График смен</h2> 
+   <button id="generateScheduleButton">Сгенерировать график</button> 
+   <table> 
+    <tbody id="scheduleBody"></tbody> 
+   </table> 
+  </div> 
+  <script src="script.js"></script> 
+ </body>
+</html>
